@@ -22,7 +22,9 @@ Your goal is to build a very simple Todo list application. Here are some example
 
 [http://dreamerslab.com/blog/en/write-a-todo-list-with-express-and-mongodb/](http://dreamerslab.com/blog/en/write-a-todo-list-with-express-and-mongodb/)
 
+Provided within this repository is a basic scaffold that includes an `express` application that runs a serve on `localhost:3000`. Run the server with: `npm start`. Build your application on tip of this scaffold.
 
+You are allowed to use third party libraries/tools like JQuery/Bootstrap.
 
 #### Required features
 
