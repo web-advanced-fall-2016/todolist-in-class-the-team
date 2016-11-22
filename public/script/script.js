@@ -45,14 +45,15 @@
                 console.warn(`Couldn't fetch tasks list`);
                 console.log(err);
             });
+    }
 
-let addBtn = document.getElementById('addBtn');
-let list = document.getElementById('myToDoList');
+    let addBtn = document.getElementById('addBtn');
+    let list = document.getElementById('myToDoList');
 
-function updateTasks(res){
-    var taskListHolding = document.getElementById('taskList');
-    taskListHolding.innerHTML='';
-    for(let i = 0; i < res.length; i++){
+    var deleteTask = function(res){
+        var taskListHolding = document.getElementById('taskList');
+        taskListHolding.innerHTML='';
+        for(let i = 0; i < res.length; i++){
 			var count = i;
 			var newTask = document.createElement('div');
 			newTask.className = "tasks";
@@ -75,15 +76,33 @@ function updateTasks(res){
             taskListHolding.appendChild(newTask);
             document.getElementById("myToDoList").appendChild(taskListHolding);
 		}
-
-	}
+    }
 
 var deleteTask = function(e){
   var taskNumber = e.target.parentElement.id;   
-//   "How to make it update to server?"
-  response.splice(taskNumber, 1);
-  updateTasks(); 
-};
+  let deleteRequest = new Request(`${baseURL}/alltasks/${task.id}/delete`, config);
+  fetch(deleteRequest)
+                         .then(function(res) {
+                            if (res.status == 200)
+                                return res.json();
+                            else
+                                throw new Error('Something went wrong on api server!');
+                        })
+                        .then(function(res) {
+                            updateTasks(res);
+                            console.log("Deleted!")
+                        })
+                        .catch(function(err) {
+                            console.warn(`Couldn't fetch tasks!`);
+                            console.log(err);
+                        });
+                }
+            })
+            .catch(function(err) {
+                console.warn(`Couldn't fetch students list`);
+                console.log(err);
+            });
+    }
 
 
 function saveTodo(){
@@ -98,3 +117,5 @@ function saveTodo(){
     }
     updateTasks();
 };
+
+})();
