@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Todo List</title>
@@ -8,9 +7,26 @@
 </head>
 
 <body>
-    <section id="main">
-        This is our class exercise!
-    </section>
+    <div id="myToDoList">
+		<h1>THE TEAM'S TO DO LIST</h1>
+				
+		<div id="taskAdder">
+			<form>
+				<input type="text" id="newTask" name="inputNew" placeholder="What do you have to do today?">
+                <button onclick="saveTask()" class="addButton">ok!</button>
+			</form>
+		</div>
+    </div>
+		
+    <div id="taskList">
+    </div>
+
+<!--
+        <form action="http://149.31.134.179:3000/" method="get">
+            <button type="submit">Click For HTML Form HTTP Request</button>
+        </form>-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="script/script.js"></script>
 </body>
 
 </html>
