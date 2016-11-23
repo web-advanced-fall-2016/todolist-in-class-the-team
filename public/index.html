@@ -4,22 +4,20 @@
     <meta charset="utf-8">
     <title>Todo List</title>
     <link rel="stylesheet" type="text/css" href="styles/reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Delius+Unicase" rel="stylesheet">
 </head>
 
 <body>
-    <div id="myToDoList">
-		<h1>THE TEAM'S TO DO LIST</h1>
-				
-		<div id="taskAdder">
-			<form>
-				<input type="text" id="newTask" name="inputNew" placeholder="What do you have to do today?">
-                <button onclick="saveTask()" class="addButton">ok!</button>
-			</form>
-		</div>
-    </div>
-		
-    <div id="taskList">
-    </div>
+     <div id="myDIV" class="header">
+     <h2 style="margin:5px"> The Team - To Do List </h2>
+     <input type="text" id="Input" name="Input" placeholder="Title...">
+     <span onclick="newElement()" class="addBtn">Add </span>
+     </div>
+
+     <ul id="myUL">
+
+  </ul>
 
 <!--
         <form action="http://149.31.134.179:3000/" method="get">

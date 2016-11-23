@@ -1,121 +1,134 @@
-(function() {
-    let baseURL = 'http://localhost:3000';
-    if (document.readyState != "loading") {
-        app();
-    } else {
-        document.addEventListener('DOMContentLoaded', function() {
-            app();
-        }, false);
+var baseURL = "http://localhost:3000";
+console.log('start');
+var initialItems = [];
+var updateList = [];
+let listOne = document.getElementById("one");
+var newItem;
+
+window.onload = function() {
+    getInitialItems();
+    testConnection();
+};
+
+
+
+function getInitialItems(){
+    $.ajax({
+        method:"GET",
+        url: baseURL + `/initial`
+    }).done(function(res){
+        console.log('Initial Items.');
+        console.log(res);
+         for (i=0; i< res.length; i++) {
+            console.log(res[i]);
+            initialItems.push(res[i]);
+         }
+         createList();
+         createCloseButton();
+    })
+};
+
+function testConnection(){
+    $.ajax({
+        method:"GET",
+        url: baseURL + `/test`
+    }).done(function(res){
+        console.log("Test result is" + res.message);
+    })
+};
+
+function addItem(data){
+        $.ajax({
+        method:"POST",
+        url: baseURL + `/addItem`,
+        data: data
+    }).done(function(res){
+        console.log(data + " was sent to server");
+        console.log("The result is " + res);
+        refreshList(res);
+});
+}
+
+function deleteFromServer(id){
+    $.ajax({
+        method:"POST",
+        url: baseURL + `/closeItem`,
+        data: {"id":id}
+    }).done(function(res){
+        console.log(id + "was sent to server");
+        refreshList(res);
+    });
+}
+
+function createList() {
+    console.log("creatinglist...");
+    var list = document.querySelector('ul');
+    // var li = document.createElement('li');
+    for (item of initialItems) {
+        list.innerHTML += "<li id=' " + item.id + "'>" + item.name + "</li>";
     }
+}
 
-    function getTasks() {
-        let config = {
-            method: 'GET',
-            headers: new Headers({}),
-        };
-
-        let request = new Request(`${baseURL}/alltasks`, config);
-        fetch(request)
-            .then(function(res) {
-                if (res.status == 200)
-                    return res.json();
-                else
-                    throw new Error('Something went wrong on api server!');
-            })
-            .then(function(res) {
-                for (let task of res) {
-                    let request = new Request(`${baseURL}/alltasks/${task.id}`, config);
-                    fetch(request)
-                        .then(function(res) {
-                            if (res.status == 200)
-                                return res.json();
-                            else
-                                throw new Error('Something went wrong on api server!');
-                        })
-                        .then(function(res) {
-                            updateTasks(res);
-                        })
-                        .catch(function(err) {
-                            console.warn(`Couldn't fetch tasks!`);
-                            console.log(err);
-                        });
-                }
-            })
-            .catch(function(err) {
-                console.warn(`Couldn't fetch tasks list`);
-                console.log(err);
-            });
+function refreshList(data){
+    updateList = data;
+    console.log(updateList);
+    console.log("new list refresh");
+    var list = document.querySelector('ul');
+    list.innerHTML = "";
+    for (item of updateList){
+        list.innerHTML += "<li id=' " + item.id + "'>" + item.name + "</li>";
     }
+    createCloseButton();
+}
 
-    let addBtn = document.getElementById('addBtn');
-    let list = document.getElementById('myToDoList');
+// function createList() {
+//     console.log("creatinglist...");
+//     var list = document.querySelector('ul');
+//     // var li = document.createElement('li');
+//     for (item of initialItems) {
+//         list.innerHTML += "<li id=' " + item.id + "'>" + item.name + "</li>";
+//     }
+// }
 
-    var deleteTask = function(res){
-        var taskListHolding = document.getElementById('taskList');
-        taskListHolding.innerHTML='';
-        for(let i = 0; i < res.length; i++){
-			var count = i;
-			var newTask = document.createElement('div');
-			newTask.className = "tasks";
-			newTask.id=i;
-			list.appendChild(newTask);
 
-			var taskContent = document.createElement('li');
-			taskContent.innerHTML = res[i].taskContent;
-
-            var deleteButton = document.createElement('button');
-            deleteButton.id = 'deleteButton';
-            deleteButton.innerText='X'; 
+function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("Input").value;
+    var nextID = parseInt(document.getElementById("myUL").lastChild.id) + 1;
+    console.log(nextID);
     
-            deleteButton.addEventListener('click', function(e){
-            e.preventDefault();
-            deleteTask(e);
 
-			newTask.appendChild(taskContent);
-			newTask.appendChild(deletedButton);
-            taskListHolding.appendChild(newTask);
-            document.getElementById("myToDoList").appendChild(taskListHolding);
-		}
-    }
-
-var deleteTask = function(e){
-  var taskNumber = e.target.parentElement.id;   
-  let deleteRequest = new Request(`${baseURL}/alltasks/${task.id}/delete`, config);
-  fetch(deleteRequest)
-                         .then(function(res) {
-                            if (res.status == 200)
-                                return res.json();
-                            else
-                                throw new Error('Something went wrong on api server!');
-                        })
-                        .then(function(res) {
-                            updateTasks(res);
-                            console.log("Deleted!")
-                        })
-                        .catch(function(err) {
-                            console.warn(`Couldn't fetch tasks!`);
-                            console.log(err);
-                        });
-                }
-            })
-            .catch(function(err) {
-                console.warn(`Couldn't fetch students list`);
-                console.log(err);
-            });
-    }
-
-
-function saveTodo(){
-    var inputValue = document.getElementById("myInput").value;
-    
     if (inputValue === '') {
         alert("You must write something!");
     } else {
           newItem = { name: inputValue, id: nextID };
           addItem(newItem);
+          var inputValue = '';
           console.log(nextID);
-    }
-    updateTasks();
-};
+              }
+}
 
-})();
+function createCloseButton() {
+var mylist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < mylist.length; i++) {
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    mylist[i].appendChild(span);
+    span.addEventListener('click', function(ev) {
+      if (ev.target.parentElement.nodeName === 'LI') {
+        console.log(ev.target.parentElement.id);
+        let currentItem = ev.target.parentElement.id;
+        closeItem(currentItem);
+      }
+    })
+}
+}
+
+function closeItem(id){
+  console.log("the id of the thing to close is" + id);
+  deleteFromServer(id);
+}
+

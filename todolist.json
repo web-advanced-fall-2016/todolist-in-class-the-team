@@ -1,13 +1,1 @@
-[{
-        "description": "item-1",
-        "id": 0
-    },
-    {
-        "description": "item-2",
-        "id": 1
-    },
-    {
-        "description": "item-3",
-        "id": 2
-    }
-]
+[{"name":"Work on Thesis","id":"1"},{"name":"Enjoy Thanksgiving","id":"2"},{"name":"Work in JavaScript Code","id":"3"}]
