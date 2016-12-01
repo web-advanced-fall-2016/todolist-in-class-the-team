@@ -8,10 +8,11 @@ To do list that works with a local server + a database to add and delete new ite
 ### Server Information
 NodeJS is setup in the 3000 port.
 The API endpoints are: 
-GET - /test - DESCRIPTION: Tests connection to the server 
-GET - /initial - DESCRIPTION: Gets items from database   
-POST - /addItem - DESCRIPTION: Adds items to database 
-POST - /deleteFromServer - DESCRIPTION: Deletes items from server 
+
+1. GET - /test - DESCRIPTION: Tests connection to the server 
+2. GET - /initial - DESCRIPTION: Gets items from database   
+3. POST - /addItem - DESCRIPTION: Adds items to database 
+4. POST - /deleteFromServer - DESCRIPTION: Deletes items from server 
 
 ### Node Modules Used
 Express
