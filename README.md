@@ -1,24 +1,31 @@
 # The Team - To do list  (Cecilia, Chao, Raquel)
 
-### In Class Exercise
+### What this does 
 
-Assignment to communications between the server and the javascript file to create a To Do List to add new items to the list and delete Items. The server will save the items on the database on a Json file and display through the server on the browser in the local host. The list starts with 3 items.
+To do list that works with a local server + a database to add and delete new items to a list. The server will save the items on the database in a JSON file and display through the server on the browser. The list starts with 3 items that are already in the database.
 
-##Requirements
-Communication with the server to add and remove Item from the list from the DataBase
 
-##Server Information
-NodeJS is setup in the 3030 port 
+### Server Information
+NodeJS is setup in the 3000 port.
+The API endpoints are: 
+GET - /test - DESCRIPTION: Tests connection to the server 
+GET - /initial - DESCRIPTION: Gets items from database   
+POST - /addItem - DESCRIPTION: Adds items to database 
+POST - /deleteFromServer - DESCRIPTION: Deletes items from server 
 
-#Resources
-Has a styles and javascript and Index files to setup the server
+### Node Modules Used
+Express
+Path
+Body Parser
+FS
+HTTP
 
 
 ## Installation
 
-1 . Copy or clone the repository with GitHub
-2.  Open the Folder on Terminal
-3. npm install to run Node on the local Server
-4. On the navigator go to //localhost:3000
-5. Add and remove Items
+1. Copy or clone the repository from GitHub
+2. Open the Folder on Terminal
+3. In terminam write: npm install
+4. In the brower go to //localhost:3000
+
 
