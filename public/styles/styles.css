@@ -1,7 +1,7 @@
 body {
   margin: 50px;
   min-width: 250px;
-  font-family: 'Delius Unicase', cursive;
+  font-family: 'PT-Sans', sans-serif;
 }
 
 /* Include the padding and border in an element's total width and height */
@@ -34,13 +34,13 @@ ul li {
 /* Set all odd list items to a different color (zebra-stripes) */
 ul li:nth-child(odd) {
   background: #A1D1E2;
-  font-family: 'Delius Unicase', cursive;
+  font-family: 'PT-Sans', sans-serif;
 }
 
 /* Darker background-color on hover */
 ul li:hover {
   background: #5D8E9B;
-  font-family: 'Delius Unicase', cursive;
+  font-family: 'PT-Sans', sans-serif;
 }
 
 /* When clicked on, add a background color and strike out text */
@@ -62,7 +62,7 @@ ul li.checked::before {
   transform: rotate(45deg);
   height: 15px;
   width: 7px;
-  font-family: 'Delius Unicase', cursive;
+  font-family: 'PT-Sans', sans-serif;
 }
 
 /* Style the close button */
@@ -76,14 +76,14 @@ ul li.checked::before {
 .close:hover {
   background-color: #0D7793;
   color: white;
-  font-family: 'Delius Unicase', cursive;
+  font-family: 'PT-Sans', sans-serif;
 }
 
 /* Style the header */
 .header {
-  background-color: #073A4C;
+  background-color: white;
   padding: 30px 40px;
-  color: white;
+  color: #00566D;
   text-align: center;
 }
 
@@ -96,12 +96,13 @@ ul li.checked::before {
 
 /* Style the input */
 input {
-  border: none;
+  border: 2px solid;
   width: 75%;
+  height: 35px;
   padding: 10px;
   float: left;
   font-size: 16px;
-  font-family: 'Delius Unicase', cursive;
+  font-family: 'PT-Sans', sans-serif;
 }
 
 /* Style the "Add" button */
@@ -115,9 +116,17 @@ input {
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
-  font-family: 'Delius Unicase', cursive;
+  font-family: 'PT-Sans', sans-serif;
 }
 
 .addBtn:hover {
   background-color: #087A99;
+}
+
+h2 {
+  font-family: :'PT-Sans', sans-serif;;
+  color:#087A99;
+  font-size: 40px;
+  margin-bottom: 20px;
+
 }

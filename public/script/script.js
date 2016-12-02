@@ -11,7 +11,6 @@ window.onload = function() {
 };
 
 
-
 function getInitialItems(){
     $.ajax({
         method:"GET",
@@ -91,6 +90,7 @@ function refreshList(data){
 // }
 
 
+//function is called when button add is pressed
 function newElement() {
     var li = document.createElement("li");
     var inputValue = document.getElementById("Input").value;
@@ -101,7 +101,7 @@ function newElement() {
     if (inputValue === '') {
         alert("You must write something!");
     } else {
-          newItem = { name: inputValue, id: nextID };
+          newItem = { name: inputValue, id: nextID }; //taking input value and adding it to the db 
           addItem(newItem);
           var inputValue = '';
           console.log(nextID);
@@ -113,7 +113,7 @@ var mylist = document.getElementsByTagName("LI");
 var i;
 for (i = 0; i < mylist.length; i++) {
     var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
+    var txt = document.createTextNode("\u2620");
     span.className = "close";
     span.appendChild(txt);
     mylist[i].appendChild(span);
